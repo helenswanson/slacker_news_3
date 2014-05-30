@@ -6,6 +6,3 @@ CREATE TABLE articles (
   created_at timestamp NOT NULL,
   completed_at timestamp
 );
-
-INSERT INTO articles (title, url, description, created_at, completed_at)
-  VALUES ('THE 6 BEST TOOLS FOR CREATIVE WORK, ACCORDING TO SCIENCE', 'http://www.fastcompany.com/3029293/work-smart/the-6-best-tools-for-creative-work-according-to-science', 'see title', NOW(), NOW());

@@ -11,15 +11,13 @@ def db_connection
   end
 end
 
-
-
 #display submitted articles
 #every article should have description, title, and url
 #url should link to relevant page inside new tab
 
 #display for index
 get "/index" do
-  query = "SELECT * FROM articles;"
+  query = "SELECT * FROM articles"
 
   @articles = db_connection do |conn|
     conn.exec(query)
@@ -51,14 +49,13 @@ post "/submit" do
   url = params["url"]
   description = params["description"]
 
-
-  @articles = db_connection do |conn|
-    conn.exec(query)
+  db_connection do |conn|
+    conn.exec_params("INSERT INTO articles
+      (title, url, description, created_at, completed_at)
+      VALUES ($1, $2, $3, NOW(), NOW())",
+        [title, url, description]
+      )
   end
-  @articles = @articles.to_a
-
-
-
 
   redirect "/index"
 end
