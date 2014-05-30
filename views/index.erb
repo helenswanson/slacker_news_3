@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Slacker News</title>
+    <!-- <link rel="shortcut icon" href="/public/yc.png"> -->
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+    <div class="content-body">
+
+      <div class="navigation-container">
+        <ul class="nav">
+          <li id="title"><a href="/index">Slacker News</a></li>
+          <li><a href="#">new</a></li>
+          <li> | </li>
+          <li><a href="#">comments</a></li>
+          <li> | </li>
+          <li><a href="#">ask</a></li>
+          <li> | </li>
+          <li><a href="#">jobs</a></li>
+          <li> | </li>
+          <li><a href="/submit">submit</a></li>
+          <li id="login"> <a href="#">login</a></li>
+        </ul>
+      </div>
+
+      <div class="main-container">
+        <ol class="search-result-list">
+          <div class="search-result">
+            <h4 class="search-result-title">
+
+              <% @articles.each do |article| %>
+                <li> <span> &#x25b2; </span> <a href="<%= article[:url] %>"> <%= article[:title] %> </a>
+                   <p class="search-result-details"><%= article[:description] %></p>
+                </li>
+              <% end %>
+            </h4>
+          </div>
+        </ol>
+      </div>
+
+      <div class="navigation-footer">
+        <ul class="nav-footer">
+          <li><a href="#">Lists</a></li>
+          <li> | </li>
+          <li><a href="#">RSS</a></li>
+          <li> | </li>
+          <li><a href="#">Bookmarklet</a></li>
+          <li> | </li>
+          <li><a href="#">Guidelines</a></li>
+          <li> | </li>
+          <li><a href="#">FAQ</a></li>
+          <li> | </li>
+          <li><a href="#">DMCA</a></li>
+          <li> | </li>
+          <li><a href="#">News News</a></li>
+          <li> | </li>
+          <li><a href="#">Feature Requests</a></li>
+          <li> | </li>
+          <li><a href="#">Bugs</a></li>
+          <li> | </li>
+          <li><a href="#">Y Combinator</a></li>
+          <li> | </li>
+          <li><a href="#">Apply</a></li>
+          <li> | </li>
+          <li><a href="#">Library</a></li>
+        </ul>
+
+        <form> Search:
+        <input type="text field" name="search_input">
+        </form>
+
+      </div>
+    </div>
+  </body>
+</html>
