@@ -32,10 +32,12 @@
             <h4 class="search-result-title">
 
               <% @articles.each do |article| %>
-                <li> <span> &#x25b2; </span> <a href="<%= article[:url] %>"> <%= article[:title] %> </a>
-                   <p class="search-result-details"><%= article[:description] %></p>
+                <li> <span> &#x25b2; </span> <a href="<%= article["url"] %>"> <%= article["title"] %> </a>
+                   <p class="search-result-details"><%= article["description"] %></p>
                 </li>
               <% end %>
+
+
             </h4>
           </div>
         </ol>

@@ -1,6 +1,17 @@
 require 'sinatra'
-require "CSV"
-require "pry"
+require 'pg'
+require 'pry'
+
+def db_connection
+  begin
+    connection = PG.connect(dbname: 'slacker_news')
+    yield(connection)
+  ensure
+    connection.close
+  end
+end
+
+
 
 #display submitted articles
 #every article should have description, title, and url
@@ -8,10 +19,14 @@ require "pry"
 
 #display for index
 get "/index" do
-  @articles = []
-  CSV.foreach('articles.csv', headers: true, header_converters: :symbol) do |row|
-    @articles << row.to_hash
+  query = "SELECT * FROM articles;"
+
+  @articles = db_connection do |conn|
+    conn.exec(query)
   end
+  @articles = @articles.to_a
+
+
   erb :index
 end
 
@@ -35,8 +50,15 @@ post "/submit" do
   title = params["title"]
   url = params["url"]
   description = params["description"]
-  CSV.open("articles.csv", "a") do |file|
-    file << [title, url, description]
+
+
+  @articles = db_connection do |conn|
+    conn.exec(query)
   end
+  @articles = @articles.to_a
+
+
+
+
   redirect "/index"
 end
